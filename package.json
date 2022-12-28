@@ -2,7 +2,7 @@
   "name": "phonebook-typescript-2.0",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://vitaliy-nekrasov.github.io/phonebook-typescript-2.0/",
+  "homepage": "https://vitaliy-nekrasov.github.io/phonebook-typescript-2.5/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
