@@ -1,16 +1,22 @@
 import { useState, useRef } from "react";
 import { nanoid } from "nanoid";
 import { Form, Label, Input, Button } from "./ContactForm.styled";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactSlice";
+import { AppDispatch } from "../../redux/store";
 
-interface IProps {
-  onSubmit: Function;
+interface IContact {
+  name: string;
+  number: string;
+  id: string;
 }
 
-export const ContactForm: React.FC<IProps> = ({ onSubmit }) => {
+export const ContactForm: React.FC = (): JSX.Element => {
   const [name, setName] = useState<string>("");
   const [number, setNumber] = useState<string>("");
   const contactName = useRef<HTMLInputElement>(null);
   const contactNumber = useRef<HTMLInputElement>(null);
+  const dispatch: AppDispatch = useDispatch();
 
   const handlerInput = (): void => {
     setName(contactName.current?.value!);
@@ -19,13 +25,13 @@ export const ContactForm: React.FC<IProps> = ({ onSubmit }) => {
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const contact: object = {
+    const contact: IContact = {
       name,
       id: nanoid(),
       number,
     };
     e.currentTarget.reset();
-    onSubmit(contact);
+    dispatch(addContact(contact));
   };
 
   return (
